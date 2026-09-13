@@ -272,6 +272,15 @@ body {
   border-color: #38bdf8;
   box-shadow: 0 6px 15px rgba(56, 189, 248, 0.4);
 }
+/* Gmail Custom Color & Hover Effect */
+.social-btn.gmail {
+  background: #ea4335;
+}
+
+.social-btn.gmail:hover {
+  background: #c5221f;
+  box-shadow: 0 6px 15px rgba(234, 67, 53, 0.6);
+}
 
 .sticker-icon {
   display: flex;
