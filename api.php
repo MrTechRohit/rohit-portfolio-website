@@ -15,25 +15,25 @@ if ($requestMethod === 'GET') {
         "summary" => "Specializing in single-page web applications, clean responsive layouts, and robust PHP/MySQL backends.",
         "avatar" => "assets/avatar.png",
         "logo" => "assets/logo.png",
-		"education" => [
-		[
+        "education" => [
+            [
                 "degree" => "M.Tech in Computer Science & Engineering (CSE)",
                 "institution" => "SRMIST Delhi-NCR campus in Modinagar",
                 "year" => "2027",
-                "details" => "Core coursework: Advanced Machine Learning, Deep Learning, Full-Stack Web Development, Cloud Computing, Advanced Data Structures and Algorithms, DevOps and CI/CD Pipelines, and Enterprise Software Architecture. Etc."
+                "details" => "Core coursework: Advanced Machine Learning, Deep Learning, Full-Stack Web Development, Cloud Computing, Advanced Data Structures and Algorithms, DevOps and CI/CD Pipelines, and Enterprise Software Architecture."
             ],
             [
                 "degree" => "B.Tech in Computer Science & Engineering (CSE)",
                 "institution" => "Delhi Institute of Engineering and Technology (DIET) Meerut",
-				"Affiliation & Location:"=>"AKTU,Meerut, Uttar Pradesh",
+                "Affiliation & Location" => "AKTU, Meerut, Uttar Pradesh",
                 "year" => "2023",
-                "details" => "Core coursework: Data Structures,NLP and Its Application, DBMS, Web Development, Machine Learning, and Database Management. Etc."
+                "details" => "Core coursework: Data Structures, NLP and Its Application, DBMS, Web Development, Machine Learning, and Database Management."
             ],
             [
                 "degree" => "Senior Secondary Examination (Class 12th)",
-				"year" => "2017",
                 "institution" => "Shree Hans Inter College Muradnagar",
-                           "details" => "Science Stream with Physics, Chemistry, and Mathematics."
+                "year" => "2017",
+                "details" => "Science Stream with Physics, Chemistry, and Mathematics."
             ]
         ],
         "skills" => [
@@ -44,30 +44,46 @@ if ($requestMethod === 'GET') {
             "RESTful API Development",
             "Single Page Application (SPA) Architecture",
             "UI/UX Responsive Design",
-			"Full-Stack Development ",
+            "Full-Stack Development",
             "Git & Version Control",
-			"C and C++, Python, JAVA (Basic)"
+            "C and C++, Python, JAVA (Basic)"
         ],
-"projects" => [
+        "projects" => [
             [
                 "title" => "Hospital Management System",
                 "tech" => "PHP, MySQL, PDO, CSS",
-                "desc" => "Full CRUD application featuring doctor scheduling, patient logs, and real-time conflict prevention for appointments."
+                "desc" => "Full CRUD application featuring doctor scheduling, patient logs, and real-time conflict prevention for appointments.",
+                "link" => "http://localhost/hospital/"
             ],
             [
                 "title" => "E-Commerce Management System",
                 "tech" => "PHP, MySQL, JavaScript",
-                "desc" => "Live catalog with multi-criteria filtering, shopping cart sessions, and atomic real-time stock deductions."
+                "desc" => "Live catalog with multi-criteria filtering, shopping cart sessions, and atomic real-time stock deductions.",
+                "link" => "http://localhost/ecommerce/"
             ],
             [
                 "title" => "Live Weather SPA",
                 "tech" => "JavaScript, Fetch API, CSS Grid",
-                "desc" => "Asynchronous single-page weather dashboard consuming public REST APIs without page reloads."
+                "desc" => "Asynchronous single-page weather dashboard consuming public REST APIs without page reloads.",
+                "link" => "https://live-weather-abhiro.vercel.app"
             ],
             [
                 "title" => "Library Book & Member Management System",
                 "tech" => "PHP, MySQL, PDO, Sessions",
-                "desc" => "Book inventory tracking, role-based member logins, borrow limits enforcement, ISBN format validation, and tabular activity reports."
+                "desc" => "Book inventory tracking, role-based member logins, borrow limits enforcement, ISBN format validation, and tabular activity reports.",
+                "link" => "http://localhost/library/"
+            ],
+            [
+                "title" => "AlphaNum Match Interactive Web Game",
+                "tech" => "JavaScript, CSS Animations, DOM API",
+                "desc" => "Fast-paced web arcade game featuring falling alphanumeric tokens, active scoreboards, and animated clearing states.",
+                "link" => "https://alphanum-match.vercel.app"
+            ],
+            [
+                "title" => "Predictive Health Lifestyle Analytics",
+                "tech" => "Python, Scikit-Learn, LightGBM, Flask",
+                "desc" => "Machine learning inference pipeline classifying health lifestyle data and wellness risk indicators via JSON endpoints.",
+                "link" => "http://localhost/health-analytics/"
             ]
         ]
     ];
@@ -76,7 +92,7 @@ if ($requestMethod === 'GET') {
     exit;
 }
 
-// Handle POST: Receive and Process Contact Form Submission
+// Handle POST: Process Contact Form Submission
 if ($requestMethod === 'POST') {
     $rawInput = file_get_contents("php://input");
     $data = json_decode($rawInput, true);
@@ -85,7 +101,6 @@ if ($requestMethod === 'POST') {
     $email   = htmlspecialchars(trim($data['email'] ?? ''));
     $message = htmlspecialchars(trim($data['message'] ?? ''));
 
-    // Server-Side Validations
     if (empty($name) || empty($email) || empty($message)) {
         http_response_code(400);
         echo json_encode(["status" => "error", "message" => "Please fill out all required fields."]);
@@ -98,7 +113,6 @@ if ($requestMethod === 'POST') {
         exit;
     }
 
-    // Persist Contact Message to Local Server Log
     $logEntry = "[" . date('Y-m-d H:i:s') . "] From: $name ($email) | Message: $message" . PHP_EOL;
     file_put_contents("messages.txt", $logEntry, FILE_APPEND | LOCK_EX);
 
@@ -109,6 +123,5 @@ if ($requestMethod === 'POST') {
     exit;
 }
 
-// Any other HTTP Method
 http_response_code(405);
 echo json_encode(["status" => "error", "message" => "Method not permitted."]);

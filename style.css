@@ -133,7 +133,6 @@ body {
   text-shadow: 0 2px 5px rgba(0,0,0,0.85);
 }
 
-/* Blue About Me Button in Hero */
 .hero-actions {
   display: flex;
   justify-content: center;
@@ -142,7 +141,7 @@ body {
   margin-top: 24px;
   flex-wrap: wrap;
 }
-/* About Me Button (Blue) */
+
 .btn-about {
   display: inline-flex;
   align-items: center;
@@ -165,7 +164,6 @@ body {
   box-shadow: 0 6px 20px rgba(2, 132, 199, 0.7);
 }
 
-/* Resume Download Button (Emerald / Green Accent) */
 .btn-resume {
   display: inline-flex;
   align-items: center;
@@ -187,7 +185,8 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(5, 150, 105, 0.7);
 }
-/* Container & Translucent Glass Cards */
+
+/* Glass Cards */
 .container {
   max-width: 850px;
   margin: 20px auto 40px;
@@ -261,22 +260,13 @@ body {
   box-shadow: 0 6px 15px rgba(10, 102, 194, 0.6);
 }
 
-/* Twitter / X Custom Style */
-.social-btn.twitter {
-  background: #000000;
-  border-color: rgba(255, 255, 255, 0.3);
+.social-btn.telegram { background: #229ed9; }
+.social-btn.telegram:hover {
+  background: #1a7db0;
+  box-shadow: 0 6px 15px rgba(34, 158, 217, 0.6);
 }
 
-.social-btn.twitter:hover {
-  background: #111111;
-  border-color: #38bdf8;
-  box-shadow: 0 6px 15px rgba(56, 189, 248, 0.4);
-}
-/* Gmail Custom Color & Hover Effect */
-.social-btn.gmail {
-  background: #ea4335;
-}
-
+.social-btn.gmail { background: #ea4335; }
 .social-btn.gmail:hover {
   background: #c5221f;
   box-shadow: 0 6px 15px rgba(234, 67, 53, 0.6);
@@ -288,7 +278,7 @@ body {
   justify-content: center;
 }
 
-/* Education Timeline Styles */
+/* Education Timeline */
 .education-timeline {
   display: flex;
   flex-direction: column;
@@ -366,10 +356,10 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,0.7);
 }
 
-/* Projects */
+/* Projects Grid & Cards */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 16px;
 }
 
@@ -378,6 +368,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -405,9 +398,36 @@ body {
   color: #e2e8f0;
   font-size: 0.92rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  margin-bottom: 16px;
 }
 
-/* Form Styles */
+/* Live Project Action Link */
+.project-links {
+  display: flex;
+  margin-top: auto;
+}
+
+.proj-link.live-demo {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #0284c7;
+  color: #ffffff;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  transition: all 0.2s ease;
+}
+
+.proj-link.live-demo:hover {
+  background: #0369a1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.5);
+}
+
+/* Contact Form */
 .form-group {
   margin-bottom: 16px;
 }

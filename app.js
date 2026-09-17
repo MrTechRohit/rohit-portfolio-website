@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Asynchronously load resume details from PHP
   fetchResumeData();
 
-  // Contact form submission via AJAX
   const contactForm = document.getElementById('contactForm');
   contactForm.addEventListener('submit', handleContactSubmit);
 });
@@ -15,16 +13,15 @@ async function fetchResumeData() {
     const payload = await response.json();
     const data = payload.data;
 
-    // Set text content
+    // Profile Details
     document.getElementById('heroName').textContent = data.name;
     document.getElementById('heroTitle').textContent = data.title;
     document.getElementById('heroSummary').textContent = data.summary;
 
-    // Set dynamic assets
     if (data.avatar) document.getElementById('profileAvatar').src = data.avatar;
     if (data.logo) document.getElementById('siteLogo').src = data.logo;
-	
-	// Render Education Section
+
+    // Education
     if (data.education) {
       const educationContainer = document.getElementById('educationList');
       educationContainer.innerHTML = data.education.map(edu => `
@@ -39,19 +36,28 @@ async function fetchResumeData() {
       `).join('');
     }
 
-    // Render skills
-    const skillsContainer = document.getElementById('skillsList');
-    skillsContainer.innerHTML = data.skills.map(s => `<li>${s}</li>`).join('');
+    // Skills
+    if (data.skills) {
+      const skillsContainer = document.getElementById('skillsList');
+      skillsContainer.innerHTML = data.skills.map(s => `<li>${s}</li>`).join('');
+    }
 
-    // Render projects
-    const projectsContainer = document.getElementById('projectsGrid');
-    projectsContainer.innerHTML = data.projects.map(p => `
-      <div class="project-item">
-        <h4>${p.title}</h4>
-        <small>${p.tech}</small>
-        <p>${p.desc}</p>
-      </div>
-    `).join('');
+    // Projects: Displaying Live Project URL for all cards
+    if (data.projects) {
+      const projectsContainer = document.getElementById('projectsGrid');
+      projectsContainer.innerHTML = data.projects.map(p => `
+        <div class="project-item">
+          <div>
+            <h4>${p.title}</h4>
+            <small>${p.tech}</small>
+            <p>${p.desc}</p>
+          </div>
+          <div class="project-links">
+            <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="proj-link live-demo">Live Project &rarr;</a>
+          </div>
+        </div>
+      `).join('');
+    }
 
   } catch (err) {
     console.error('Error fetching resume API:', err);
